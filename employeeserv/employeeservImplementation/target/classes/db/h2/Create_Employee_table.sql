@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS Employee;
+CREATE TABLE Employee (
+        EMPLOYEE_ID			INTEGER (5) 	NOT NULL,
+        FIRST_NAME	        VARCHAR2(255)	NOT NULL,
+        LAST_NAME 			VARCHAR2(255),
+        DOB 			    VARCHAR2(10) NOT NULL ,
+        CONSTRAINT EID PRIMARY KEY(EMPLOYEE_ID)
+);
+
+
+DROP TABLE IF EXISTS Employee_Address;
+
+CREATE TABLE Employee_Address (
+
+        ADDRESS_ID          NUMBER GENERATED AS IDENTITY(START with 1 INCREMENT  by 1),
+        EMPLOYEE_ID			INTEGER (5) 	NOT NULL,
+        ADD_LINE1           VARCHAR2(255) NOT NULL,
+        ADD_LINE2           VARCHAR2(255),
+        CITY                VARCHAR2(30) NOT NULL ,
+        STATE               VARCHAR2(30) NOT NULL,
+        COUNTRY             VARCHAR2(30) NOT NULL,
+        ZIP                 VARCHAR(10) NOT NULL,
+        CONSTRAINT AID PRIMARY KEY(ADDRESS_ID )
+);
+

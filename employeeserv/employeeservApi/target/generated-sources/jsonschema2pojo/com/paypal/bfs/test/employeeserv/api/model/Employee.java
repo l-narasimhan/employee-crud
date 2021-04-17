@@ -22,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "id",
     "first_name",
-    "last_name"
+    "last_name",
+    "dob",
+    "address"
 })
 public class Employee {
 
@@ -49,6 +51,22 @@ public class Employee {
     @JsonProperty("last_name")
     @JsonPropertyDescription("last name")
     private String lastName;
+    /**
+     * date of birth
+     * (Required)
+     * 
+     */
+    @JsonProperty("dob")
+    @JsonPropertyDescription("date of birth")
+    private String dob;
+    /**
+     * address
+     * (Required)
+     * 
+     */
+    @JsonProperty("address")
+    @JsonPropertyDescription("address")
+    private Address address;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -110,6 +128,46 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    /**
+     * date of birth
+     * (Required)
+     * 
+     */
+    @JsonProperty("dob")
+    public String getDob() {
+        return dob;
+    }
+
+    /**
+     * date of birth
+     * (Required)
+     * 
+     */
+    @JsonProperty("dob")
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * address
+     * (Required)
+     * 
+     */
+    @JsonProperty("address")
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * address
+     * (Required)
+     * 
+     */
+    @JsonProperty("address")
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -135,6 +193,14 @@ public class Employee {
         sb.append("lastName");
         sb.append('=');
         sb.append(((this.lastName == null)?"<null>":this.lastName));
+        sb.append(',');
+        sb.append("dob");
+        sb.append('=');
+        sb.append(((this.dob == null)?"<null>":this.dob));
+        sb.append(',');
+        sb.append("address");
+        sb.append('=');
+        sb.append(((this.address == null)?"<null>":this.address));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

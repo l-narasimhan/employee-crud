@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeResourceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">employeeservImplementation</a> &gt; <a href="index.source.html" class="el_package">com.paypal.bfs.test.employeeserv.impl</a> &gt; <span class="el_source">EmployeeResourceImpl.java</span></div><h1>EmployeeResourceImpl.java</h1><pre class="source lang-java linenums">package com.paypal.bfs.test.employeeserv.impl;
+
+import com.paypal.bfs.test.employeeserv.api.EmployeeResource;
+import com.paypal.bfs.test.employeeserv.api.model.EmployeeRequest;
+import com.paypal.bfs.test.employeeserv.model.EmployeeResponse;
+import com.paypal.bfs.test.employeeserv.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.Optional;
+
+/**
+ * Implementation class for employee resource.
+ */
+<span class="fc" id="L22">@Slf4j</span>
+@RestController
+public class EmployeeResourceImpl implements EmployeeResource {
+
+    private EmployeeService employeeService;
+
+    @Autowired
+<span class="fc" id="L29">    public EmployeeResourceImpl(EmployeeService employeeService) {</span>
+
+<span class="fc" id="L31">        this.employeeService = employeeService;</span>
+<span class="fc" id="L32">    }</span>
+
+    @Override
+    public ResponseEntity&lt;EmployeeRequest&gt;  getEmployeeById(String id) {
+        Optional&lt;EmployeeRequest&gt; employee;
+        try {
+<span class="fc" id="L38">             employee = employeeService.getEmployeeById(Integer.valueOf(id));</span>
+<span class="fc" id="L39">        }catch (Exception e) {</span>
+<span class="fc" id="L40">            log.error(&quot;Failed to retrieve employee record &quot; + id, e);</span>
+<span class="fc" id="L41">            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);</span>
+<span class="fc" id="L42">        }</span>
+<span class="fc" id="L43">        return employee.map(v -&gt; new ResponseEntity&lt;&gt;(v, HttpStatus.OK)).orElseGet(()</span>
+<span class="fc" id="L44">                -&gt; new ResponseEntity&lt;&gt;(HttpStatus.NOT_FOUND));</span>
+    }
+
+    @Override
+    public ResponseEntity createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest){
+        /*
+         Check if the Employee id is already available
+         */
+        EmployeeResponse employeeResponse;
+<span class="fc" id="L53">        Long startTime = System.currentTimeMillis();</span>
+<span class="fc" id="L54">        Optional&lt;EmployeeRequest&gt; emp = employeeService.getEmployeeById(employeeRequest.getId());</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (emp.isPresent()){</span>
+<span class="fc" id="L56">            return new ResponseEntity(HttpStatus.CONFLICT);</span>
+        }
+        try {
+<span class="fc" id="L59">             employeeResponse = employeeService.createEmployee(employeeRequest);</span>
+<span class="fc" id="L60">        }catch (Exception e) {</span>
+<span class="fc" id="L61">            log.error(&quot;Failed to Create New Employee &quot; + employeeRequest.getFirstName(), e);</span>
+<span class="fc" id="L62">            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);</span>
+<span class="fc" id="L63">        }</span>
+<span class="fc" id="L64">        URI location = ServletUriComponentsBuilder.fromCurrentRequest().</span>
+<span class="fc" id="L65">                replacePath(&quot;/v1/bfs/employees/&quot;).path(&quot;/{id}&quot;).buildAndExpand(employeeRequest.getId()).toUri();</span>
+<span class="fc" id="L66">        log.info(&quot;Employee Creation Successful Time taken {}&quot;, System.currentTimeMillis() - startTime);</span>
+<span class="fc" id="L67">        return  ResponseEntity.created(location).body(employeeResponse);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

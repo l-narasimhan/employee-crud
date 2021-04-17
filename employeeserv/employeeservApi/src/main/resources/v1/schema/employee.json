@@ -18,10 +18,24 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 255
+    },
+    "dob" : {
+      "description": "date of birth",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12
+    },
+    "address": {
+      "description": "address",
+      "type": "object",
+      "javaType": "com.paypal.bfs.test.employeeserv.api.model.Address"
     }
   },
+
   "required": [
     "first_name",
-    "last_name"
+    "last_name",
+    "dob",
+    "address"
   ]
 }

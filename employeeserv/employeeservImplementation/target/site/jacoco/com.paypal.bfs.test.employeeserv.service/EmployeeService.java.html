@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">employeeservImplementation</a> &gt; <a href="index.source.html" class="el_package">com.paypal.bfs.test.employeeserv.service</a> &gt; <span class="el_source">EmployeeService.java</span></div><h1>EmployeeService.java</h1><pre class="source lang-java linenums">package com.paypal.bfs.test.employeeserv.service;
+
+import com.paypal.bfs.test.employeeserv.api.model.EmployeeRequest;
+import com.paypal.bfs.test.employeeserv.mapper.EmployeeMapper;
+import com.paypal.bfs.test.employeeserv.mapper.EmployeePojoMapper;
+import com.paypal.bfs.test.employeeserv.model.EmployeeEntity;
+import com.paypal.bfs.test.employeeserv.model.EmployeeResponse;
+import com.paypal.bfs.test.employeeserv.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+
+@Service
+public class EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private EmployeePojoMapper employeePojoMapper;
+
+    @Autowired
+<span class="fc" id="L27">    public EmployeeService(EmployeeRepository employeeRepository) {</span>
+
+<span class="fc" id="L29">        this.employeeRepository = employeeRepository;</span>
+<span class="fc" id="L30">        this.employeeMapper = employeeMapper;</span>
+<span class="fc" id="L31">        this.employeePojoMapper = employeePojoMapper;</span>
+<span class="fc" id="L32">    }</span>
+
+    public Optional&lt;EmployeeRequest&gt; getEmployeeById(Integer id) {
+<span class="fc" id="L35">        Optional&lt;EmployeeEntity&gt; employeeEntity = employeeRepository.findById(id);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        return employeeEntity.isPresent() ? employeePojoMapper.mapToPojo(employeeEntity) : Optional.empty();</span>
+
+    }
+    public EmployeeResponse  createEmployee(EmployeeRequest employee) {
+        //validaation
+<span class="fc" id="L41">        EmployeeEntity employeeEntity = employeeMapper.mapToEntity(employee);</span>
+<span class="fc" id="L42">        employeeRepository.save(employeeEntity);</span>
+<span class="fc" id="L43">        return EmployeeResponse.builder().employeeId(String.valueOf(employee.getId())).build();</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

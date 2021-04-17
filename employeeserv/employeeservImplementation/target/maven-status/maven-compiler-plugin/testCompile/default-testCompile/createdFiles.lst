@@ -1,0 +1,5 @@
+com/paypal/bfs/test/employeeserv/mapper/EmployeePojoMapperTest.class
+com/paypal/bfs/test/employeeserv/service/EmployeeServiceTest.class
+com/paypal/bfs/test/employeeserv/impl/EmployeeResourceImplTest.class
+com/paypal/bfs/test/employeeserv/MockData.class
+com/paypal/bfs/test/employeeserv/mapper/EmployeeMapperTest.class

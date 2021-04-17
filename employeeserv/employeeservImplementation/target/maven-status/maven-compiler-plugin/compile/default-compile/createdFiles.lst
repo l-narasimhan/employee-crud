@@ -1,2 +1,12 @@
+com/paypal/bfs/test/employeeserv/mapper/EmployeePojoMapper.class
+com/paypal/bfs/test/employeeserv/model/AddressEntity.class
 com/paypal/bfs/test/employeeserv/EmployeeservApplication.class
+com/paypal/bfs/test/employeeserv/model/EmployeeResponse.class
+com/paypal/bfs/test/employeeserv/model/AddressEntity$AddressEntityBuilder.class
+com/paypal/bfs/test/employeeserv/model/EmployeeEntity.class
+com/paypal/bfs/test/employeeserv/model/EmployeeResponse$EmployeeResponseBuilder.class
+com/paypal/bfs/test/employeeserv/mapper/EmployeeMapper.class
+com/paypal/bfs/test/employeeserv/model/EmployeeEntity$EmployeeEntityBuilder.class
 com/paypal/bfs/test/employeeserv/impl/EmployeeResourceImpl.class
+com/paypal/bfs/test/employeeserv/service/EmployeeService.class
+com/paypal/bfs/test/employeeserv/repository/EmployeeRepository.class

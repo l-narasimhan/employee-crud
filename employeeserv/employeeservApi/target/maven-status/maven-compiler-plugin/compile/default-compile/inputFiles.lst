@@ -1,2 +1,5 @@
-/Users/narasiml/Downloads/employeeserv/employeeservApi/target/generated-sources/jsonschema2pojo/com/paypal/bfs/test/employeeserv/api/model/Employee.java
-/Users/narasiml/Downloads/employeeserv/employeeservApi/src/main/java/com/paypal/bfs/test/employeeserv/api/EmployeeResource.java
+/Users/narasiml/Documents/Paypal/employee-crud/v2/employee-crud/employeeserv/employeeservApi/src/main/java/com/paypal/bfs/test/employeeserv/api/EmployeeResource.java
+/Users/narasiml/Documents/Paypal/employee-crud/v2/employee-crud/employeeserv/employeeservApi/src/main/java/com/paypal/bfs/test/employeeserv/api/model/EmployeeRequest.java
+/Users/narasiml/Documents/Paypal/employee-crud/v2/employee-crud/employeeserv/employeeservApi/target/generated-sources/jsonschema2pojo/com/paypal/bfs/test/employeeserv/api/model/Address.java
+/Users/narasiml/Documents/Paypal/employee-crud/v2/employee-crud/employeeserv/employeeservApi/target/generated-sources/jsonschema2pojo/com/paypal/bfs/test/employeeserv/api/model/Employee.java
+/Users/narasiml/Documents/Paypal/employee-crud/v2/employee-crud/employeeserv/employeeservApi/src/main/java/com/paypal/bfs/test/employeeserv/api/model/AddressRequest.java
