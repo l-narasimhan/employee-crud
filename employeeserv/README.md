@@ -1,5 +1,37 @@
 # employeeserv
 
+
+### Quality Gate Status at 
+[employeeserv/employeeservImplementation/target/site/jacoco/index.html]
+
+### Prerequisite
+[Java JDK 8] [jdk download](http://www.oracle.com/technetwork/systems/index-jsp-138363.html)  
+[Maven 3.5][download link](https://maven.apache.org/download.cgi)   
+[Eclipse IDE][download link](https://www.eclipse.org/downloads/)  
+
+### Step 1: Clone the project
+$ git clone https://github.com/lnarasimhan83/employee-crud.git
+
+###  Step 2 : Build the project
+$ mvn clean install  
+Note: In case any build failer, check settings.xml
+
+###  Step 3 : Running individual services
+$ cd <serices_directory>  
+mvn spring-boot:run  
+Note: any issue with port conflict, please change the port in <service_director>/src/main/resources/application.properties "server.port=<your choice>"
+configure SERVER_PORT = <your choice> as Environment Variable
+
+###  Step 4 : Swagger Spec
+[http://localhost:8301/swagger-ui.html#/employee-resource-impl]
+Viewing swagger Rest Spec API, though most of service already provide /swagger-ui.html for playground but to review the Rest specification, one can use  
+https://editor.swagger.io/
+or  
+
+### To Do
+
+Dockerfile, DockerCompose
+
 ## Application Overview
 employeeserv is a spring boot rest application which would provide the CRUD operations for `Employee` resource.
 
